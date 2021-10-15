@@ -46,7 +46,7 @@ function insertDefaultItems () {
     if (err) {
       console.log(err);
     } else {
-      console.log(docs);
+      console.log("Default items inserted.");
     }
     mongoose.connection.close();
   });
@@ -100,7 +100,7 @@ app.post("/", function(req, res) {
         if (err) {
           console.log(err)
         } else {
-          console.log(result)
+          console.log("Item added.")
         }
       }
     );
@@ -120,7 +120,7 @@ app.post("/delete", function(req, res) {
       if (err) {
         console.log(err);
       } else {
-        console.log("Deleted item", result);
+        console.log("Item deleted");
       }
     });
     res.redirect("/");
@@ -134,7 +134,7 @@ app.post("/delete", function(req, res) {
         if (err) {
           console.log(err)
         } else {
-          console.log(result)
+          console.log("item deleted.")
         }
     });
     res.redirect(`/${listName}`);
@@ -174,7 +174,12 @@ app.get("/about", function(req, res){
   res.render("about");
 });
 
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3000;
+};
 
-app.listen(3000, function() {
-  console.log("Server started on port 3000");
+
+app.listen(port, function() {
+  console.log("Server has started successfully.");
 });
